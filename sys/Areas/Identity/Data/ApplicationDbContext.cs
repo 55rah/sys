@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using sys.Areas.Identity.Data;
+using PMS10.Models;
 
 namespace sys.Areas.Identity.Data;
 
@@ -22,6 +23,14 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 
         builder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
     }
+
+    public DbSet<PMS10.Models.Employee> Employee { get; set; } = default!;
+
+    public DbSet<PMS10.Models.Shift> Shift { get; set; } = default!;
+
+    public DbSet<PMS10.Models.Salaries> Salaries { get; set; } = default!;
+
+    public DbSet<PMS10.Models.Payroll> Payroll { get; set; } = default!;
 }
 
 public class ApplicationUserEntityConfiguration : IEntityTypeConfiguration<ApplicationUser>
