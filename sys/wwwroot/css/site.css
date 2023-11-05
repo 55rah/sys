@@ -19,4 +19,9 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color: #8d8b8b;
+}
+
+.footer {
+    background-color: #cbcbcb;
 }
