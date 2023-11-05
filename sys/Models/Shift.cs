@@ -7,8 +7,8 @@ namespace PMS10.Models
     {
         [Key] public int Shift_ID { get; set; }
 
-        [Column(TypeName = "decimal(3,2)")]
+        [Column(TypeName = "decimal(4,2)")]
         public decimal Hours { get; set; }
-        public ICollection<Payroll> Payrolls { get; set; }
+        public ICollection<Payroll> Payrolls { get; } = new List<Payroll>();
     }
 }

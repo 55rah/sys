@@ -5,11 +5,17 @@ namespace PMS10.Models
 {
     public enum WorkType
     {
-        FullTime, PartTime, Temp, Casual
+        [Display(Name = "Full Time")]
+        FullTime,
+        [Display(Name = "Part Time")]
+        PartTime, 
+        Temp, 
+        Casual
     }
 
     public class Employee
     {
+        [DisplayName("ID")]
         [Key] public int Employee_ID { get; set; }
 
         [Required(ErrorMessage = "Please enter IRD number")]
@@ -27,6 +33,7 @@ namespace PMS10.Models
         [RegularExpression("^([ \u00c0-\u01ffa-zA-Z'])+$", ErrorMessage = "Please enter last name")]
         public string LastName { get; set; }
 
+        [DisplayName("Work Type")]
         public WorkType WorkType { get; set; }
 
         [Required(ErrorMessage = "Please enter an email address")]
@@ -45,6 +52,7 @@ namespace PMS10.Models
         [RegularExpression("^([ \u00c0-\u01ffa-zA-Z'])+$", ErrorMessage = "Please enter a region")]
         public string Region { get; set; }
         public bool COA { get; set; }
-        public ICollection<Payroll> Payrolls { get; set; }
+
+        public ICollection<Payroll> Payrolls { get; } = new List<Payroll>();
     }
 }

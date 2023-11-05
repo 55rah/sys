@@ -159,6 +159,121 @@ namespace sys.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("PMS10.Models.Employee", b =>
+                {
+                    b.Property<int>("Employee_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Employee_ID"));
+
+                    b.Property<bool>("COA")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IRD")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Region")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("WorkType")
+                        .HasColumnType("int");
+
+                    b.HasKey("Employee_ID");
+
+                    b.ToTable("Employee");
+                });
+
+            modelBuilder.Entity("PMS10.Models.Payroll", b =>
+                {
+                    b.Property<int>("Payroll_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Payroll_ID"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Employee_ID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Salary_ID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Shift_ID")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(7,2)");
+
+                    b.HasKey("Payroll_ID");
+
+                    b.HasIndex("Employee_ID");
+
+                    b.HasIndex("Salary_ID");
+
+                    b.HasIndex("Shift_ID");
+
+                    b.ToTable("Payroll");
+                });
+
+            modelBuilder.Entity("PMS10.Models.Salaries", b =>
+                {
+                    b.Property<int>("Salary_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Salary_ID"));
+
+                    b.Property<int>("Bonus")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Salary")
+                        .HasColumnType("decimal(19,2)");
+
+                    b.Property<decimal>("Wage")
+                        .HasColumnType("decimal(5,2)");
+
+                    b.HasKey("Salary_ID");
+
+                    b.ToTable("Salaries");
+                });
+
+            modelBuilder.Entity("PMS10.Models.Shift", b =>
+                {
+                    b.Property<int>("Shift_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Shift_ID"));
+
+                    b.Property<decimal>("Hours")
+                        .HasColumnType("decimal(4,2)");
+
+                    b.HasKey("Shift_ID");
+
+                    b.ToTable("Shift");
+                });
+
             modelBuilder.Entity("sys.Areas.Identity.Data.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -283,6 +398,48 @@ namespace sys.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("PMS10.Models.Payroll", b =>
+                {
+                    b.HasOne("PMS10.Models.Employee", "Employee")
+                        .WithMany("Payrolls")
+                        .HasForeignKey("Employee_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PMS10.Models.Salaries", "Salaries")
+                        .WithMany("Payrolls")
+                        .HasForeignKey("Salary_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PMS10.Models.Shift", "Shift")
+                        .WithMany("Payrolls")
+                        .HasForeignKey("Shift_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("Salaries");
+
+                    b.Navigation("Shift");
+                });
+
+            modelBuilder.Entity("PMS10.Models.Employee", b =>
+                {
+                    b.Navigation("Payrolls");
+                });
+
+            modelBuilder.Entity("PMS10.Models.Salaries", b =>
+                {
+                    b.Navigation("Payrolls");
+                });
+
+            modelBuilder.Entity("PMS10.Models.Shift", b =>
+                {
+                    b.Navigation("Payrolls");
                 });
 #pragma warning restore 612, 618
         }
