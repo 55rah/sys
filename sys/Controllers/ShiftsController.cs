@@ -30,6 +30,7 @@ namespace sys.Controllers
         }
 
         // GET: Shifts/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Shift == null)
@@ -48,6 +49,7 @@ namespace sys.Controllers
         }
 
         // GET: Shifts/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -56,6 +58,7 @@ namespace sys.Controllers
         // POST: Shifts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Shift_ID,Hours")] Shift shift)
@@ -70,6 +73,7 @@ namespace sys.Controllers
         }
 
         // GET: Shifts/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Shift == null)
@@ -88,6 +92,7 @@ namespace sys.Controllers
         // POST: Shifts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Shift_ID,Hours")] Shift shift)
@@ -121,6 +126,7 @@ namespace sys.Controllers
         }
 
         // GET: Shifts/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Shift == null)
@@ -139,6 +145,7 @@ namespace sys.Controllers
         }
 
         // POST: Shifts/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

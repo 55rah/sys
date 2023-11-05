@@ -30,6 +30,7 @@ namespace sys.Controllers
         }
 
         // GET: Payrolls/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Payroll == null)
@@ -48,6 +49,7 @@ namespace sys.Controllers
         }
 
         // GET: Payrolls/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -56,6 +58,7 @@ namespace sys.Controllers
         // POST: Payrolls/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Payroll_ID,Employee_ID,Salary_ID,Shift_ID,Date,TotalAmount")] Payroll payroll)
@@ -70,6 +73,7 @@ namespace sys.Controllers
         }
 
         // GET: Payrolls/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Payroll == null)
@@ -88,6 +92,7 @@ namespace sys.Controllers
         // POST: Payrolls/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Payroll_ID,Employee_ID,Salary_ID,Shift_ID,Date,TotalAmount")] Payroll payroll)
@@ -121,6 +126,7 @@ namespace sys.Controllers
         }
 
         // GET: Payrolls/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Payroll == null)
@@ -139,6 +145,7 @@ namespace sys.Controllers
         }
 
         // POST: Payrolls/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
