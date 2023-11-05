@@ -18,11 +18,15 @@ namespace PMS10.Models
         [DisplayName("ID")]
         [Key] public int Employee_ID { get; set; }
 
+        // The [Required] annotation makes the table unable to be created without the field filled
+        // This regular expression only validates only 8 or 9 digit numbers 
         [Required(ErrorMessage = "Please enter IRD number")]
         [DisplayName("IRD")]
         [RegularExpression("(^\\d{8}(\\d{1})?$)", ErrorMessage = "Please enter a valid IRD number format e.g. 123456789")]
         public string IRD { get; set; }
 
+        // The [DisplayName] annotation is self explanatory and changes the display name on the web app
+        // This regular expression only validates all letters of the alphabet including some special characters for foreign names 
         [Required(ErrorMessage = "Please enter first name")]
         [DisplayName("First Name")]
         [RegularExpression("^([ \u00c0-\u01ffa-zA-Z'])+$", ErrorMessage = "Please enter first name")]
@@ -36,11 +40,13 @@ namespace PMS10.Models
         [DisplayName("Work Type")]
         public WorkType WorkType { get; set; }
 
+        // This [DataType(DataType.EmailAddress)] only allows email addresses in the field
         [Required(ErrorMessage = "Please enter an email address")]
         [DisplayName("Email")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
+        // This regular expression only allows local, mobile and freecall NZ phone numbers
         [Required(ErrorMessage = "Please enter a phone number")]
         [DisplayName("Phone")]
         [DataType(DataType.PhoneNumber)]
