@@ -39,24 +39,24 @@ namespace sys.Controllers
 
             ViewData["CurrentFilter"] = searchString;
 
-            var students = from s in _context.Employee
+            var employees = from s in _context.Employee
                            select s;
             if (!String.IsNullOrEmpty(searchString))
             {
-                students = students.Where(s => s.LastName.Contains(searchString)
+                employees = employees.Where(s => s.LastName.Contains(searchString)
                                        || s.FirstName.Contains(searchString));
             }
             switch (sortOrder)
             {
                 case "name_desc":
-                    students = students.OrderByDescending(s => s.LastName);
+                    employees = employees.OrderByDescending(s => s.LastName);
                     break;
                 default:
-                    students = students.OrderBy(s => s.LastName);
+                    employees = employees.OrderBy(s => s.LastName);
                     break;
             }
             int pageSize = 3;
-            return View(await PaginatedList<Employee>.CreateAsync(students.AsNoTracking(), pageNumber ?? 1, pageSize));
+            return View(await PaginatedList<Employee>.CreateAsync(employees.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Employees/Details/5

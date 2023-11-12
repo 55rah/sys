@@ -216,7 +216,7 @@ namespace sys.Migrations
                     Salary_ID = table.Column<int>(type: "int", nullable: false),
                     Shift_ID = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TotalAmount = table.Column<decimal>(type: "decimal(7,2)", nullable: false)
+                    TotalAmount = table.Column<decimal>(type: "decimal(19,2)", nullable: false)
                 },
                 constraints: table =>
                 {

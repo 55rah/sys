@@ -29,7 +29,8 @@ namespace PMS10.Models
         public DateTime Date { get; set; }
 
         // This [Column(TypeName = "decimal(7,2)")] defines the decimal field for TotalAmount where 7 is the allowed amount of total digits in a number and 2 is the amont after a decimal
-        [Column(TypeName = "decimal(7,2)")]
+        [Column(TypeName = "decimal(19,2)")]
+        [DisplayName("Total Amount($)")]
         public decimal TotalAmount { get; set; }
     }
 }

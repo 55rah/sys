@@ -223,7 +223,7 @@ namespace sys.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(7,2)");
+                        .HasColumnType("decimal(19,2)");
 
                     b.HasKey("Payroll_ID");
 
