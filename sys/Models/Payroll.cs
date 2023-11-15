@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc;
 
 namespace PMS10.Models
 {
@@ -27,9 +28,12 @@ namespace PMS10.Models
         public Shift? Shift { get; set; }
 
         // The [DataType(DataType.Date)] annotation makes the field a date field where a user can select a date from a calender GUI. 
-        [Required]
-        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
+        public Payroll()
+        {
+            Date = DateTime.Now;
+        }
 
         // This [Column(TypeName = "decimal(7,2)")] defines the decimal field for TotalAmount where 7 is the allowed amount of total digits in a number and 2 is the amont after a decimal
         [Column(TypeName = "decimal(19,2)")]
